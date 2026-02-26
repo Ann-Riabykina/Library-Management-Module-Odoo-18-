@@ -1,0 +1,8 @@
+# Python / Odoo artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Odoo
+*.log
+*.pot

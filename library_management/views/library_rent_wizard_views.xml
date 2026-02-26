@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form -->
+    <record id="view_library_rent_wizard_form" model="ir.ui.view">
+        <field name="name">library.rent.wizard.form</field>
+        <field name="model">library.rent.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Issue Book">
+                <group>
+                    <field name="partner_id"/>
+                </group>
+                <footer>
+                    <button name="action_confirm"
+                            type="object"
+                            string="Confirm"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_library_rent_wizard" model="ir.actions.act_window">
+        <field name="name">Issue Book</field>
+        <field name="res_model">library.rent.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

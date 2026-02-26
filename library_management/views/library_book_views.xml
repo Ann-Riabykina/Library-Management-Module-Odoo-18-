@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        BOOK VIEWS
+        We define:
+          - tree(list) view for library.book
+          - form view for library.book
+          - action to open books
+          - menu items
+    -->
+
+    <!-- List view for books -->
+    <record id="view_library_book_tree" model="ir.ui.view">
+        <field name="name">library.book.tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list string="Books">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="published_date"/>
+                <field name="is_available"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for books -->
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <header>
+                    <button name="%(action_library_rent_wizard)d"
+                    type="action"
+                    string="Issue Book"
+                    class="btn-primary"
+                    invisible="not is_available"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="author"/>
+                        <field name="published_date"/>
+                        <field name="is_available"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action: open list of books -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Top menu -->
+    <menuitem id="menu_library_root" name="Library" sequence="10"/>
+
+    <!-- Books menu -->
+    <menuitem id="menu_library_books"
+              name="Books"
+              parent="menu_library_root"
+              action="action_library_book"
+              sequence="10"/>
+</odoo>
